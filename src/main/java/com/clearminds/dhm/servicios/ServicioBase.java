@@ -1,13 +1,12 @@
 package com.clearminds.dhm.servicios;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 
 import com.clearminds.dhm.bdd.ConexionBDD;
 import com.clearminds.dhm.excepciones.BDDException;
 
 public class ServicioBase {
-	private Connection conexion;
+	private Connection conexion = null;
 
 	
 	public Connection getConexion() {
