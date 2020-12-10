@@ -2,6 +2,9 @@ package com.clearminds.dhm.servicios;
 
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
+
+import javax.rmi.CORBA.Util;
 
 import com.clearminds.dhm.bdd.ConexionBDD;
 import com.clearminds.dhm.dtos.Estudiante;
@@ -27,9 +30,9 @@ public class ServicioEstudiante extends ServicioBase {
 		Statement stmt = null;
 		try {
 			stmt = getConexion().createStatement();
-
-			String sql = "insert into estudiantes(nombre,apellido,edad) values('" + est.getNombre() + "','"
-					+ est.getApellido() + "','" + est.getEdad() + "')";
+			String fecha = DataUtil.obtenerFecha(new Date());
+			String sql = "insert into estudiantes(nombre,apellido,edad,fecha_modificacion) values('" + est.getNombre() + "','"
+					+ est.getApellido() + "','" + est.getEdad() + "','"+fecha+"')";
 			System.out.println("Script: " + sql);
 
 			stmt.executeUpdate(sql);
@@ -47,8 +50,8 @@ public class ServicioEstudiante extends ServicioBase {
 		Statement stmt = null;
 		try {
 			stmt = getConexion().createStatement();
-
-			String sql = "update estudiantes set nombre='"+est.getNombre()+"', apellido='"+est.getApellido()+"',edad='"+est.getEdad()+"' where id='"+est.getNumero()+"'";
+			String fecha = DataUtil.obtenerFecha(new Date());
+			String sql = "update estudiantes set nombre='"+est.getNombre()+"', apellido='"+est.getApellido()+"',edad='"+est.getEdad()+"',fecha_modificacion='"+fecha+"' where id='"+est.getNumero()+"'";
 			System.out.println("Script: " + sql);
 
 			stmt.executeUpdate(sql);
